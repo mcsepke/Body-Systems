@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>11 Major Body Systems — Study Sheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #f8f7f4;
+    --surface: #ffffff;
+    --surface2: #f1efe8;
+    --border: rgba(0,0,0,0.1);
+    --border-strong: rgba(0,0,0,0.18);
+    --text: #1a1a18;
+    --text-muted: #6b6b65;
+    --text-faint: #9b9b93;
+    --accent: #1D9E75;
+    --accent-light: #E1F5EE;
+    --accent-dark: #085041;
+    --radius: 10px;
+    --radius-lg: 14px;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  /* ── Header ── */
+  .site-header {
+    background: var(--surface);
+    border-bottom: 0.5px solid var(--border);
+    padding: 20px 40px;
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .site-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+  .site-tagline {
+    font-size: 12px;
+    color: var(--text-faint);
+    font-weight: 400;
+  }
+
+  /* ── Layout ── */
+  .layout {
+    display: flex;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px 24px;
+    gap: 28px;
+    align-items: flex-start;
+  }
+
+  /* ── Sidebar Nav ── */
+  .sidebar {
+    width: 176px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 80px;
+  }
+  .sidebar-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    padding: 0 10px;
+    margin-bottom: 8px;
+  }
+  .nav-btn {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    width: 100%;
+    padding: 8px 10px;
+    border: none;
+    background: transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-muted);
+    text-align: left;
+    transition: all 0.15s;
+    margin-bottom: 1px;
+  }
+  .nav-btn:hover { background: var(--surface2); color: var(--text); }
+  .nav-btn.active { background: var(--accent-light); color: var(--accent-dark); font-weight: 500; }
+  .nav-icon { font-size: 15px; flex-shrink: 0; }
+
+  /* ── Main content ── */
+  .main {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .page { display: none; animation: fadeIn 0.2s ease; }
+  .page.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ── System header ── */
+  .sys-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .sys-icon {
+    width: 58px;
+    height: 58px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    flex-shrink: 0;
+  }
+  .sys-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 30px;
+    color: var(--text);
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }
+  .sys-subtitle {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    max-width: 560px;
+  }
+
+  /* ── Cards ── */
+  .card {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 16px 18px;
+    margin-bottom: 14px;
+  }
+  .card-label {
+    font-size: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--text-faint);
+    margin-bottom: 12px;
+  }
+
+  /* ── Components grid ── */
+  .components-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 0 24px;
+  }
+  .component {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    padding: 7px 0;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .component:last-child { border-bottom: none; }
+  .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 5px;
+  }
+  .comp-name { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 1px; }
+  .comp-desc { font-size: 11.5px; color: var(--text-muted); line-height: 1.45; }
+
+  /* ── Two-col bottom row ── */
+  .bottom-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  /* ── Functions list ── */
+  .fun-list { list-style: none; }
+  .fun-item {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    padding: 5px 0;
+    border-bottom: 0.5px solid var(--border);
+    line-height: 1.5;
+  }
+  .fun-item:last-child { border-bottom: none; }
+  .fun-item::before { content: '→ '; color: var(--accent); font-weight: 500; }
+
+  /* ── Fact box ── */
+  .fact-box {
+    background: var(--accent-light);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+  }
+  .fact-label {
+    font-size: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .fact-text { font-size: 12.5px; color: var(--accent-dark); line-height: 1.55; }
+
+  /* ── Responsive ── */
+  @media (max-width: 720px) {
+    .layout { flex-direction: column; padding: 16px; gap: 16px; }
+    .sidebar { width: 100%; position: static; display: flex; flex-wrap: wrap; gap: 4px; }
+    .sidebar-label { display: none; }
+    .nav-btn { width: auto; padding: 5px 10px; font-size: 12px; }
+    .bottom-row { grid-template-columns: 1fr; }
+    .site-header { padding: 14px 16px; }
+    .components-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-title">Body Systems Study Sheet</div>
+  <div class="site-tagline">11 major systems · components · functions · key facts</div>
+</header>
+
+<div class="layout">
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-label">Systems</div>
+  </nav>
+  <main class="main" id="pages"></main>
+</div>
+
+<script>
+const systems = [
+  {
+    id: 'skeletal', name: 'Skeletal system', icon: '🦴',
+    color: '#888780', bg: '#F1EFE8',
+    subtitle: 'The structural framework — 206 bones that support, protect, and enable movement',
+    components: [
+      {name:'Axial skeleton',desc:'Skull, vertebral column, rib cage — the central core (80 bones)'},
+      {name:'Appendicular skeleton',desc:'Limbs, shoulder girdle, pelvic girdle — movement & manipulation (126 bones)'},
+      {name:'Long bones',desc:'Femur, humerus, tibia — levers for movement'},
+      {name:'Flat bones',desc:'Skull, sternum, scapula — protection & muscle attachment'},
+      {name:'Short bones',desc:'Carpals, tarsals — weight bearing & stability'},
+      {name:'Irregular bones',desc:'Vertebrae, hip bones — complex shapes for special functions'},
+      {name:'Sesamoid bones',desc:'Patella (kneecap) — protect tendons from friction'},
+      {name:'Cartilage',desc:'Hyaline, fibrocartilage, elastic — cushions joints, shapes ears & nose'},
+      {name:'Ligaments',desc:'Dense connective tissue connecting bone to bone'},
+      {name:'Periosteum',desc:'Protective membrane covering bone surface'},
+      {name:'Bone marrow',desc:'Red marrow (blood production) and yellow marrow (fat storage)'},
+      {name:'Joints',desc:'Synovial, fibrous, cartilaginous — allow varying degrees of movement'},
+    ],
+    functions: ['Supports and gives shape to the body','Protects vital organs (skull→brain, ribs→heart/lungs)','Enables movement as levers for muscles','Produces red and white blood cells (hematopoiesis)','Stores calcium, phosphorus, and fat'],
+    fact: 'The femur (thigh bone) is the longest and strongest bone; the stapes in the ear is the smallest.'
+  },
+  {
+    id: 'muscular', name: 'Muscular system', icon: '💪',
+    color: '#D85A30', bg: '#FAECE7',
+    subtitle: 'Over 600 muscles generating force for movement, posture, and internal functions',
+    components: [
+      {name:'Skeletal muscle',desc:'Voluntary, striated — attached to bones via tendons, moves limbs and trunk'},
+      {name:'Smooth muscle',desc:'Involuntary — lines organs (intestines, bladder, blood vessels)'},
+      {name:'Cardiac muscle',desc:'Involuntary, striated — only in the heart wall (myocardium)'},
+      {name:'Tendons',desc:'Dense connective tissue attaching muscle to bone'},
+      {name:'Muscle fibers (myocytes)',desc:'Individual muscle cells containing actin and myosin filaments'},
+      {name:'Sarcomere',desc:'Basic contractile unit of skeletal and cardiac muscle'},
+      {name:'Fascia',desc:'Connective tissue sheath that surrounds and separates muscles'},
+      {name:'Origin',desc:'The proximal, fixed attachment point of a muscle'},
+      {name:'Insertion',desc:'The distal, mobile attachment point where force is applied'},
+      {name:'Neuromuscular junction',desc:'Synapse between motor neuron and muscle fiber triggering contraction'},
+      {name:'Motor unit',desc:'One motor neuron plus all the muscle fibers it innervates'},
+      {name:'Diaphragm',desc:'Primary respiratory muscle separating thorax from abdomen'},
+    ],
+    functions: ['Produces movement of the skeleton','Maintains posture and body position','Generates body heat (thermogenesis)','Pumps blood (cardiac muscle)','Moves food through digestive tract (peristalsis)'],
+    fact: 'The gluteus maximus is the largest muscle; the stapedius in the ear is the smallest.'
+  },
+  {
+    id: 'nervous', name: 'Nervous system', icon: '🧠',
+    color: '#7F77DD', bg: '#EEEDFE',
+    subtitle: 'The master control network — brain, spinal cord, and billions of neurons processing information',
+    components: [
+      {name:'Brain',desc:'Cerebrum, cerebellum, brainstem — 86 billion neurons; higher functions, coordination, vital regulation'},
+      {name:'Cerebrum',desc:'Two hemispheres with frontal, parietal, temporal, occipital lobes'},
+      {name:'Cerebellum',desc:'Coordinates balance, fine motor control, and learned movement'},
+      {name:'Brainstem',desc:'Midbrain, pons, medulla oblongata — vital autonomic functions'},
+      {name:'Spinal cord',desc:'Highway for signals between brain and body; controls reflexes'},
+      {name:'Peripheral nervous system',desc:'All nerves outside brain and spinal cord — 12 cranial, 31 spinal nerve pairs'},
+      {name:'Somatic nervous system',desc:'Voluntary control of skeletal muscles and sensory input'},
+      {name:'Autonomic nervous system',desc:'Involuntary — regulates heart, glands, smooth muscle'},
+      {name:'Sympathetic division',desc:'Fight-or-flight response — increases HR, dilates pupils'},
+      {name:'Parasympathetic division',desc:'Rest-and-digest — slows HR, promotes digestion'},
+      {name:'Neurons',desc:'Sensory, motor, interneurons — the basic signaling units'},
+      {name:'Neuroglia (glial cells)',desc:'Astrocytes, oligodendrocytes, microglia — support and protect neurons'},
+    ],
+    functions: ['Receives and processes sensory information','Controls voluntary and involuntary movements','Regulates homeostasis and vital functions','Enables cognition, memory, and emotion','Coordinates responses to stimuli via reflex arcs'],
+    fact: 'Nerve impulses can travel up to 431 km/h (268 mph) along myelinated fibers.'
+  },
+  {
+    id: 'cardiovascular', name: 'Cardiovascular system', icon: '❤️',
+    color: '#E24B4A', bg: '#FCEBEB',
+    subtitle: 'The circulatory network — heart and ~100,000 km of blood vessels delivering oxygen and nutrients',
+    components: [
+      {name:'Heart',desc:'4-chambered pump: right/left atria, right/left ventricles'},
+      {name:'Arteries',desc:'Carry oxygenated blood away from heart (except pulmonary artery)'},
+      {name:'Veins',desc:'Carry deoxygenated blood toward heart (except pulmonary veins)'},
+      {name:'Capillaries',desc:'Microscopic vessels where gas & nutrient exchange occurs'},
+      {name:'Aorta',desc:'Largest artery; distributes oxygenated blood to systemic circulation'},
+      {name:'Pulmonary circuit',desc:'Right heart → lungs → left heart; oxygenates blood'},
+      {name:'Systemic circuit',desc:'Left heart → body → right heart; delivers O₂, removes CO₂'},
+      {name:'Coronary arteries',desc:'Supply blood to the heart muscle itself'},
+      {name:'Sinoatrial (SA) node',desc:'Natural pacemaker — initiates each heartbeat'},
+      {name:'Atrioventricular (AV) node',desc:'Delays signal between atria and ventricles'},
+      {name:'Blood',desc:'Red/white blood cells, platelets, plasma — the transport medium'},
+      {name:'Heart valves',desc:'Mitral, tricuspid, aortic, pulmonary — ensure one-way flow'},
+    ],
+    functions: ['Transports oxygen and nutrients to cells','Removes carbon dioxide and metabolic waste','Distributes hormones throughout the body','Regulates body temperature via blood flow','Fights infection by circulating white blood cells'],
+    fact: 'The heart beats ~100,000 times per day and pumps about 7,600 liters of blood daily.'
+  },
+  {
+    id: 'respiratory', name: 'Respiratory system', icon: '🫁',
+    color: '#378ADD', bg: '#E6F1FB',
+    subtitle: 'Gas exchange between the body and environment — oxygen in, carbon dioxide out',
+    components: [
+      {name:'Nasal cavity',desc:'Filters, warms, and humidifies incoming air'},
+      {name:'Pharynx',desc:'Throat — shared passage for air and food'},
+      {name:'Larynx',desc:'Voice box — contains vocal cords, routes air to trachea'},
+      {name:'Trachea',desc:'Windpipe — cartilage-reinforced tube to the lungs'},
+      {name:'Bronchi',desc:'Right and left primary branches entering each lung'},
+      {name:'Bronchioles',desc:'Smaller airways branching within the lungs (no cartilage)'},
+      {name:'Alveoli',desc:'Tiny air sacs (300 million) where O₂/CO₂ exchange occurs'},
+      {name:'Lungs',desc:'Left (2 lobes) and right (3 lobes) — main organs of respiration'},
+      {name:'Diaphragm',desc:'Dome-shaped muscle — primary driver of inhalation'},
+      {name:'Pleura',desc:'Double membrane surrounding each lung; reduces friction'},
+      {name:'Epiglottis',desc:'Flap of cartilage preventing food from entering the airway'},
+      {name:'Intercostal muscles',desc:'Between ribs — assist in expanding and compressing chest cavity'},
+    ],
+    functions: ['Supplies oxygen to the bloodstream','Removes carbon dioxide from the blood','Regulates blood pH via CO₂ exhalation','Produces speech via larynx and vocal cords','Provides sense of smell (olfaction) via nasal passage'],
+    fact: 'At rest, you breathe about 12–20 times per minute, taking in ~0.5 L of air per breath.'
+  },
+  {
+    id: 'digestive', name: 'Digestive system', icon: '🫄',
+    color: '#3B6D11', bg: '#EAF3DE',
+    subtitle: 'A 9-meter long processing tube breaking food into absorbable nutrients',
+    components: [
+      {name:'Mouth (oral cavity)',desc:'Teeth chew, tongue moves food, salivary glands release amylase'},
+      {name:'Esophagus',desc:'Muscular tube transporting food to stomach via peristalsis (~25 cm)'},
+      {name:'Stomach',desc:'J-shaped sac secreting HCl and pepsin; churns food into chyme'},
+      {name:'Small intestine',desc:'Duodenum, jejunum, ileum — primary site of nutrient absorption (~6 m)'},
+      {name:'Large intestine',desc:'Cecum, ascending, transverse, descending, sigmoid colon — water absorption (~1.5 m)'},
+      {name:'Rectum',desc:'Stores feces before elimination (~12 cm)'},
+      {name:'Anal canal / Anus',desc:'Final exit of digestive tract'},
+      {name:'Liver',desc:'Produces bile, detoxifies blood, processes nutrients from intestine'},
+      {name:'Gallbladder',desc:'Stores and concentrates bile from the liver'},
+      {name:'Pancreas',desc:'Exocrine: digestive enzymes; endocrine: insulin & glucagon'},
+      {name:'Salivary glands',desc:'Parotid, submandibular, sublingual — secrete saliva'},
+      {name:'Appendix',desc:'Small pouch at cecum junction; possible immune/microbiome role'},
+    ],
+    functions: ['Ingests and mechanically breaks down food','Chemically digests macromolecules into absorbable units','Absorbs nutrients into blood and lymph','Eliminates indigestible waste as feces','Regulates blood glucose (pancreas/liver)'],
+    fact: 'The small intestine\'s inner surface, with villi and microvilli, has the area of a tennis court.'
+  },
+  {
+    id: 'endocrine', name: 'Endocrine system', icon: '⚗️',
+    color: '#BA7517', bg: '#FAEEDA',
+    subtitle: 'A network of glands releasing hormones that regulate metabolism, growth, and reproduction',
+    components: [
+      {name:'Hypothalamus',desc:'Master regulator — links nervous and endocrine systems; controls pituitary'},
+      {name:'Pituitary gland',desc:'Anterior: GH, TSH, ACTH, FSH, LH, prolactin. Posterior: ADH, oxytocin'},
+      {name:'Thyroid gland',desc:'T3/T4 — regulate metabolism, growth, and heart rate'},
+      {name:'Parathyroid glands',desc:'4 small glands — PTH regulates blood calcium levels'},
+      {name:'Adrenal glands',desc:'Cortex: cortisol, aldosterone. Medulla: epinephrine, norepinephrine'},
+      {name:'Pancreas (islets of Langerhans)',desc:'Alpha cells (glucagon), beta cells (insulin) — blood glucose regulation'},
+      {name:'Gonads',desc:'Testes (testosterone), ovaries (estrogen, progesterone) — reproduction'},
+      {name:'Pineal gland',desc:'Secretes melatonin — regulates sleep-wake (circadian) rhythms'},
+      {name:'Thymus',desc:'Secretes thymosin — matures T-lymphocytes; most active in childhood'},
+      {name:'Placenta',desc:'Temporary endocrine organ during pregnancy; secretes hCG, estrogen'},
+    ],
+    functions: ['Regulates metabolism and energy balance','Controls growth and development','Regulates reproduction and sexual characteristics','Maintains homeostasis (blood sugar, salt, water)','Responds to stress via cortisol and adrenaline'],
+    fact: 'Hormones act at incredibly low concentrations — sometimes just a few parts per trillion.'
+  },
+  {
+    id: 'lymphatic', name: 'Lymphatic system', icon: '🛡️',
+    color: '#0F6E56', bg: '#E1F5EE',
+    subtitle: 'Fluid drainage, fat absorption, and immune defense — the body\'s sanitation and security network',
+    components: [
+      {name:'Lymph nodes',desc:'~600 bean-shaped filters; house lymphocytes to fight infection'},
+      {name:'Lymphatic vessels',desc:'Thin-walled tubes collecting excess interstitial fluid (lymph)'},
+      {name:'Thoracic duct',desc:'Largest lymph vessel — returns lymph to bloodstream at subclavian vein'},
+      {name:'Spleen',desc:'Largest lymphoid organ; filters blood, recycles RBCs, stores platelets'},
+      {name:'Thymus',desc:'Lymphoid organ above heart; site of T-cell maturation'},
+      {name:'Tonsils',desc:'Palatine, lingual, pharyngeal — first-line immune defense in throat'},
+      {name:'Lymphocytes',desc:'B-cells (antibodies), T-cells (cell-mediated immunity), NK cells'},
+      {name:'Bone marrow',desc:'Origin of all blood and immune cells (lymphopoiesis)'},
+      {name:'Chyle cistern',desc:'Lymphatic reservoir collecting fat-rich lymph from intestines'},
+      {name:'Lymph (fluid)',desc:'Excess interstitial fluid containing proteins, lipids, immune cells'},
+    ],
+    functions: ['Returns excess tissue fluid to blood (prevents edema)','Absorbs dietary fats from small intestine via lacteals','Filters pathogens via lymph nodes','Mounts immune response through lymphocytes','Removes cellular debris and foreign particles'],
+    fact: 'The lymphatic system returns about 3 liters of fluid to the bloodstream every day.'
+  },
+  {
+    id: 'urinary', name: 'Urinary system', icon: '🫘',
+    color: '#185FA5', bg: '#E6F1FB',
+    subtitle: 'Filters blood, regulates fluid and electrolytes, and excretes metabolic waste',
+    components: [
+      {name:'Kidneys',desc:'Two bean-shaped organs filtering ~180 L of blood per day'},
+      {name:'Nephron',desc:'Functional unit of the kidney (~1 million per kidney); filters and reabsorbs'},
+      {name:'Glomerulus',desc:'Capillary tuft where blood filtration begins inside Bowman\'s capsule'},
+      {name:'Renal tubules',desc:'Proximal/distal convoluted tubules + loop of Henle — selective reabsorption'},
+      {name:'Collecting duct',desc:'Final concentration of urine; regulated by ADH (antidiuretic hormone)'},
+      {name:'Renal pelvis',desc:'Funnel collecting urine from kidney before passing to ureter'},
+      {name:'Ureters',desc:'Two tubes carrying urine from kidneys to bladder (~25 cm)'},
+      {name:'Urinary bladder',desc:'Expandable muscular sac storing up to ~600 mL of urine'},
+      {name:'Urethra',desc:'Tube from bladder to outside — female (~4 cm), male (~20 cm)'},
+      {name:'Adrenal glands',desc:'Sit atop kidneys; aldosterone regulates kidney sodium reabsorption'},
+    ],
+    functions: ['Filters blood and removes metabolic waste (urea, creatinine)','Regulates blood volume and blood pressure','Maintains electrolyte balance (Na⁺, K⁺, Ca²⁺)','Regulates blood pH by excreting H⁺ ions','Produces erythropoietin (stimulates red blood cell production)'],
+    fact: 'Kidneys filter the entire blood volume (~5 L) about 36 times every day.'
+  },
+  {
+    id: 'integumentary', name: 'Integumentary system', icon: '🫶',
+    color: '#993556', bg: '#FBEAF0',
+    subtitle: 'The skin and its appendages — the body\'s largest organ and first line of defense',
+    components: [
+      {name:'Epidermis',desc:'Outer layer: stratum corneum, granulosum, spinosum, basale — waterproof barrier'},
+      {name:'Dermis',desc:'Middle layer: collagen & elastin fibers, hair follicles, glands, nerves'},
+      {name:'Hypodermis (subcutaneous)',desc:'Deep fat layer — insulation, cushioning, energy storage'},
+      {name:'Hair follicles',desc:'Produce hair shafts; arrector pili muscles cause goosebumps'},
+      {name:'Sebaceous glands',desc:'Secrete sebum (oil) to lubricate skin and hair'},
+      {name:'Sweat glands',desc:'Eccrine (cooling, all over), apocrine (axillary, inguinal — odor)'},
+      {name:'Nails',desc:'Hard keratin plates protecting fingertips and toes'},
+      {name:'Melanocytes',desc:'Produce melanin — determine skin/hair color, absorb UV radiation'},
+      {name:'Keratinocytes',desc:'Predominant epidermal cells producing keratin for skin toughness'},
+      {name:'Sensory receptors',desc:'Meissner\'s, Pacinian, Merkel\'s, Ruffini — detect touch, pressure, vibration'},
+    ],
+    functions: ['Protects against pathogens, UV, dehydration, and injury','Regulates body temperature via sweating and vasoconstriction','Synthesizes vitamin D via UV light exposure','Provides sensation (touch, pain, temperature, pressure)','Excretes small amounts of waste via sweat'],
+    fact: 'Skin is replaced entirely every 27 days — you shed ~30,000 dead skin cells per hour.'
+  },
+  {
+    id: 'reproductive', name: 'Reproductive system', icon: '🧬',
+    color: '#534AB7', bg: '#EEEDFE',
+    subtitle: 'Produces gametes and hormones, enabling the creation and development of new life',
+    components: [
+      {name:'Testes',desc:'Male gonads — produce sperm (spermatogenesis) and testosterone'},
+      {name:'Epididymis',desc:'Coiled tube where sperm mature and are stored'},
+      {name:'Vas deferens',desc:'Duct transporting sperm from epididymis to ejaculatory duct'},
+      {name:'Seminal vesicles',desc:'Glands producing fructose-rich fluid (60% of semen volume)'},
+      {name:'Prostate gland',desc:'Secretes alkaline fluid protecting sperm; ~30% of semen'},
+      {name:'Urethra (male)',desc:'Common pathway for urine and semen to exit body'},
+      {name:'Ovaries',desc:'Female gonads — produce eggs (oogenesis) and estrogen/progesterone'},
+      {name:'Fallopian tubes',desc:'Transport egg from ovary to uterus; site of fertilization'},
+      {name:'Uterus',desc:'Muscular organ housing and nourishing developing fetus'},
+      {name:'Cervix',desc:'Lower neck of uterus; dilates during childbirth'},
+      {name:'Vagina',desc:'Muscular canal connecting cervix to exterior; birth canal'},
+      {name:'Mammary glands',desc:'Modified sweat glands in females producing milk (lactation)'},
+    ],
+    functions: ['Produces male (sperm) and female (eggs) gametes','Enables fertilization and embryo development','Secretes sex hormones (estrogen, testosterone, progesterone)','Supports fetal development during pregnancy','Provides nutrition to newborns via lactation'],
+    fact: 'A single sperm cell takes about 64–74 days to fully mature from a stem cell.'
+  }
+];
+
+const sidebar = document.getElementById('sidebar');
+const pages = document.getElementById('pages');
+
+systems.forEach((s, i) => {
+  // Nav button
+  const btn = document.createElement('button');
+  btn.className = 'nav-btn' + (i === 0 ? ' active' : '');
+  btn.innerHTML = `<span class="nav-icon">${s.icon}</span>${s.name.replace(' system', '')}`;
+  btn.onclick = () => {
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('page-' + s.id).classList.add('active');
+  };
+  sidebar.appendChild(btn);
+
+  // Page
+  const page = document.createElement('div');
+  page.className = 'page' + (i === 0 ? ' active' : '');
+  page.id = 'page-' + s.id;
+
+  const compsHtml = s.components.map(c => `
+    <div class="component">
+      <div class="dot" style="background:${s.color}"></div>
+      <div>
+        <div class="comp-name">${c.name}</div>
+        <div class="comp-desc">${c.desc}</div>
+      </div>
+    </div>`).join('');
+
+  const funcsHtml = s.functions.map(f => `<li class="fun-item">${f}</li>`).join('');
+
+  page.innerHTML = `
+    <div class="sys-header">
+      <div class="sys-icon" style="background:${s.bg}">${s.icon}</div>
+      <div>
+        <div class="sys-title">${s.name}</div>
+        <div class="sys-subtitle">${s.subtitle}</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-label">Components &amp; structures</div>
+      <div class="components-grid">${compsHtml}</div>
+    </div>
+    <div class="bottom-row">
+      <div class="card">
+        <div class="card-label">Key functions</div>
+        <ul class="fun-list">${funcsHtml}</ul>
+      </div>
+      <div class="fact-box">
+        <div class="fact-label">Quick fact</div>
+        <div class="fact-text">${s.fact}</div>
+      </div>
+    </div>`;
+
+  pages.appendChild(page);
+});
+</script>
+</body>
+</html>
